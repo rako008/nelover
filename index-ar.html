@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>مهراج لتنظيم الفعاليات وتأجير المعدات</title>
+  <style>
+    body { font-family: 'Arial', sans-serif; margin: 0; padding: 0; background: #f8f8f8; color: #333; direction: rtl; }
+    header, footer { background: #2c3e50; color: white; padding: 20px 40px; display: flex; justify-content: space-between; align-items: center; }
+    nav a { color: white; margin-left: 20px; text-decoration: none; }
+    .container { padding: 40px; max-width: 1100px; margin: auto; background: white; }
+    h1, h2 { color: #2c3e50; }
+    .section { margin-bottom: 60px; }
+    .gallery img { width: 100%; max-width: 300px; margin: 10px; border-radius: 8px; box-shadow: 0 2px 8px rgba(0,0,0,0.1); }
+    .gallery { display: flex; flex-wrap: wrap; gap: 20px; justify-content: flex-end; }
+    .contact { background: #ecf0f1; padding: 20px; border-radius: 8px; }
+    .lang-toggle { background: #1abc9c; color: white; border: none; padding: 10px 15px; border-radius: 5px; cursor: pointer; font-weight: bold; }
+  </style>
+  <script>
+    function toggleLanguage() {
+      window.location.href = window.location.pathname.includes("index-ar") ? "index.html" : "index-ar.html";
+    }
+  </script>
+</head>
+<body>
+
+<header>
+  <h1>شركة مهراج لتنظيم الفعاليات</h1>
+  <div>
+    <nav>
+      <a href="#about">من نحن</a>
+      <a href="#services">خدماتنا</a>
+      <a href="#projects">مشاريعنا</a>
+      <a href="#contact">تواصل معنا</a>
+    </nav>
+  </div>
+  <button class="lang-toggle" onclick="toggleLanguage()">English</button>
+</header>
+
+<div class="container">
+  <section id="about" class="section">
+    <h2>من نحن</h2>
+    <p>شركة مهراج هي شركة متخصصة في تنظيم الفعاليات بمختلف أنواعها في جميع أنحاء المملكة العربية السعودية. نقوم بإدارة المشاريع من التخطيط وحتى التنفيذ، كما نوفر مجموعة كبيرة من المعدات والخدمات المؤقتة لتلبية جميع متطلبات الفعاليات.</p>
+  </section>
+
+  <section id="services" class="section">
+    <h2>خدماتنا وتأجير المعدات</h2>
+    <ul>
+      <li>تنظيم الفعاليات وإدارة المشاريع</li>
+      <li>خيام PVC</li>
+      <li>برتا كابنز</li>
+      <li>دورات مياه متنقلة</li>
+      <li>طاولات وكراسي</li>
+      <li>أكشاك وهياكل المعارض</li>
+      <li>أبراج إنارة</li>
+      <li>حواجز وأسوار مؤقتة</li>
+    </ul>
+    <p>يمكنك رفع صور المعدات الخاصة بك في قسم <strong>المعرض</strong> بالأسفل (انظر التعليمات).</p>
+  </section>
+
+  <section id="projects" class="section">
+    <h2>مشاريعنا السابقة</h2>
+    <p>قدمنا خدماتنا في العديد من الفعاليات الكبرى مثل الماراثونات، المهرجانات، الحفلات الموسيقية، البطولات الرياضية، والمزيد في مدن مثل الرياض، جدة، نيوم، والعلا.</p>
+    <div class="gallery">
+      <!-- قم برفع صور المشاريع هنا -->
+      <!-- مثال: <img src="images/project1.jpg" alt="مشروع 1"> -->
+    </div>
+  </section>
+
+  <section id="contact" class="section contact">
+    <h2>تواصل معنا</h2>
+    <p><strong>البريد الإلكتروني:</strong> info@mahraj-events.com</p>
+    <p><strong>الهاتف:</strong> +966-5X-XXX-XXXX</p>
+    <p><strong>واتساب:</strong> اضغط <a href="https://wa.me/9665XXXXXXX" target="_blank">هنا للتواصل</a></p>
+    <p><strong>الموقع:</strong> الرياض، المملكة العربية السعودية</p>
+  </section>
+</div>
+
+<footer>
+  <p>&copy; 2025 شركة مهراج لتنظيم الفعاليات. جميع الحقوق محفوظة.</p>
+</footer>
+
+</body>
+</html>
