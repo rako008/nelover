@@ -6,7 +6,7 @@
   <title>Nelover Events | Event Organizing & Rentals in Saudi Arabia</title>
   <style>
     .gallery-container {
-  margin-bottom: 100px; /* or more if needed */
+  margin-bottom: 50px; /* or more if needed */
 }
   .slider { max-width: 500px; margin: auto; text-align: center; position: relative; }
 .slides img { display: none; width: 100%; height: auto; border-radius: 8px; transition: opacity 0.5s ease; }
@@ -35,7 +35,7 @@
     .lang-toggle { background: #1abc9c; color: white; border: none; padding: 10px 15px; border-radius: 5px; cursor: pointer; font-weight: bold; }
   </style>
   <script>
-function initCategorySliders() {
+    function initCategorySliders() {
   document.querySelectorAll('.gallery-container').forEach(container => {
     let idx = 0;
     const slides = container.querySelectorAll('.slides img');
@@ -44,26 +44,25 @@ function initCategorySliders() {
     const next = container.querySelector('.next');
 
     function updateSlider() {
-      slides.forEach((s, i) => s.classList.toggle('active', i === idx));
-      thumbs.forEach((t, i) => t.classList.toggle('selected', i === idx));
+      slides.forEach((s,i) => s.classList.toggle('active', i === idx));
+      thumbs.forEach((t,i) => t.classList.toggle('selected', i === idx));
     }
 
     prev.onclick = () => { idx = (idx - 1 + slides.length) % slides.length; updateSlider(); };
     next.onclick = () => { idx = (idx + 1) % slides.length; updateSlider(); };
-    thumbs.forEach(thumb => {
-      thumb.onclick = () => {
-        idx = parseInt(thumb.dataset.index);
-        updateSlider();
-      };
-    });
+    thumbs.forEach(thumb => thumb.onclick = () => { idx = parseInt(thumb.dataset.index); updateSlider(); });
 
     updateSlider();
   });
 }
+
 window.onload = initCategorySliders;
 
-</script>
 
+    function toggleLanguage() {
+      window.location.href = window.location.pathname.includes("ar") ? "index.html" : "index-ar.html";
+    }
+  </script>
 </head>
 <body>
 
@@ -139,7 +138,7 @@ window.onload = initCategorySliders;
           <img data-index="1" src="images/957c0ccf-2d97-4af4-8e06-cb0e3ad41b8c.jpeg" alt="">
       </div>
     </div>
-    
+
   </section>
 
   <section id="projects" class="section">
