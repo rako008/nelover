@@ -5,6 +5,12 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Nelover Events | Event Organizing & Rentals in Saudi Arabia</title>
   <style>
+    .slider img {
+  display: none;
+  width: 100%;
+  max-height: 400px;
+  border-radius: 8px;
+}
     body { font-family: Arial, sans-serif; margin: 0; padding: 0; background: #f8f8f8; color: #333; }
     header, footer { background: #2c3e50; color: white; padding: 20px 40px; display: flex; justify-content: space-between; align-items: center; }
     nav a { color: white; margin-right: 20px; text-decoration: none; }
@@ -17,6 +23,27 @@
     .lang-toggle { background: #1abc9c; color: white; border: none; padding: 10px 15px; border-radius: 5px; cursor: pointer; font-weight: bold; }
   </style>
   <script>
+    function initSliders() {
+  const sliders = document.querySelectorAll('.slider');
+  sliders.forEach(slider => {
+    let index = 0;
+    const images = slider.querySelectorAll('img');
+    const showImage = i => {
+      images.forEach((img, j) => img.style.display = j === i ? 'block' : 'none');
+    };
+    showImage(index);
+    slider.querySelector('.prev').onclick = () => {
+      index = (index - 1 + images.length) % images.length;
+      showImage(index);
+    };
+    slider.querySelector('.next').onclick = () => {
+      index = (index + 1) % images.length;
+      showImage(index);
+    };
+  });
+}
+window.onload = initSliders;
+
     function toggleLanguage() {
       window.location.href = window.location.pathname.includes("ar") ? "index.html" : "index-ar.html";
     }
@@ -56,6 +83,7 @@
       <li>Tower Lights</li>
       <li>Barriers & Fencing</li>
     </ul>
+    <!-- PVC Tents -->
     <div class="gallery-container">
       <h3>PVC Tents</h3>
       <div class="slider">
