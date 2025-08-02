@@ -5,19 +5,6 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Nelover Events | Event Organizing & Rentals in Saudi Arabia</title>
   <style>
-    .slides img {
-  display: none;
-}
-
-.slides img.active {
-  display: block;
-}
-
-.thumbnails img.selected {
-  border: 2px solid #1abc9c;
-  opacity: 1;
-}
-
     .gallery-container {
   margin-bottom: 50px; /* or more if needed */
 }
@@ -48,8 +35,7 @@
     .lang-toggle { background: #1abc9c; color: white; border: none; padding: 10px 15px; border-radius: 5px; cursor: pointer; font-weight: bold; }
   </style>
   <script>
-    <script>
-function initCategorySliders() {
+    function initCategorySliders() {
   document.querySelectorAll('.gallery-container').forEach(container => {
     let idx = 0;
 
@@ -65,15 +51,19 @@ function initCategorySliders() {
     }
 
     prev.addEventListener('click', (e) => {
-      e.stopPropagation();
-      idx = (idx - 1 + slides.length) % slides.length; // 🔁 Loop to last
-      updateSlider();
+      e.stopPropagation(); // Stop event from bubbling to other sliders
+      if (idx > 0) {
+        idx--;
+        updateSlider();
+      }
     });
 
     next.addEventListener('click', (e) => {
       e.stopPropagation();
-      idx = (idx + 1) % slides.length; // 🔁 Loop to first
-      updateSlider();
+      if (idx < slides.length - 1) {
+        idx++;
+        updateSlider();
+      }
     });
 
     thumbs.forEach(thumb => {
@@ -84,13 +74,17 @@ function initCategorySliders() {
       });
     });
 
-    updateSlider(); // show first image on load
+    updateSlider();
   });
 }
 
-window.onload = initCategorySliders;
-</script>
 
+window.onload = initCategorySliders;
+
+
+    function toggleLanguage() {
+      window.location.href = window.location.pathname.includes("ar") ? "index.html" : "index-ar.html";
+    }
   </script>
 </head>
 <body>
