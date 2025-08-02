@@ -38,23 +38,46 @@
     function initCategorySliders() {
   document.querySelectorAll('.gallery-container').forEach(container => {
     let idx = 0;
-    const slides = container.querySelectorAll('.slides img');
+
+    const slidesWrapper = container.querySelector('.slides');
+    const slides = slidesWrapper.querySelectorAll('img');
     const thumbs = container.querySelectorAll('.thumbnails img');
     const prev = container.querySelector('.prev');
     const next = container.querySelector('.next');
 
     function updateSlider() {
-      slides.forEach((s,i) => s.classList.toggle('active', i === idx));
-      thumbs.forEach((t,i) => t.classList.toggle('selected', i === idx));
+      slides.forEach((s, i) => s.classList.toggle('active', i === idx));
+      thumbs.forEach((t, i) => t.classList.toggle('selected', i === idx));
     }
 
-    prev.onclick = () => { idx = (idx - 1 + slides.length) % slides.length; updateSlider(); };
-    next.onclick = () => { idx = (idx + 1) % slides.length; updateSlider(); };
-    thumbs.forEach(thumb => thumb.onclick = () => { idx = parseInt(thumb.dataset.index); updateSlider(); });
+    prev.addEventListener('click', (e) => {
+      e.stopPropagation(); // Stop event from bubbling to other sliders
+      if (idx > 0) {
+        idx--;
+        updateSlider();
+      }
+    });
+
+    next.addEventListener('click', (e) => {
+      e.stopPropagation();
+      if (idx < slides.length - 1) {
+        idx++;
+        updateSlider();
+      }
+    });
+
+    thumbs.forEach(thumb => {
+      thumb.addEventListener('click', (e) => {
+        e.stopPropagation();
+        idx = parseInt(thumb.dataset.index);
+        updateSlider();
+      });
+    });
 
     updateSlider();
   });
 }
+
 
 window.onload = initCategorySliders;
 
@@ -101,7 +124,7 @@ window.onload = initCategorySliders;
     <!-- PVC Tents -->
     <div class="gallery-container">
       <h3>PVC Tents</h3>
-      <div class="slider">
+      <div class="slider" tabindex="-1">
         <button class="prev">&#10094;</button>
         <div class="slides">
           <img src="images/e0d9262a-8bcd-44ac-a6e8-5828947546c7.jpeg" alt="PVC Tent 1">
