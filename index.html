@@ -38,9 +38,7 @@
     function initCategorySliders() {
   document.querySelectorAll('.gallery-container').forEach(container => {
     let idx = 0;
-
-    const slidesWrapper = container.querySelector('.slides');
-    const slides = slidesWrapper.querySelectorAll('img');
+    const slides = container.querySelectorAll('.slides img');
     const thumbs = container.querySelectorAll('.thumbnails img');
     const prev = container.querySelector('.prev');
     const next = container.querySelector('.next');
@@ -51,19 +49,15 @@
     }
 
     prev.addEventListener('click', (e) => {
-      e.stopPropagation(); // Stop event from bubbling to other sliders
-      if (idx > 0) {
-        idx--;
-        updateSlider();
-      }
+      e.stopPropagation();
+      idx = (idx - 1 + slides.length) % slides.length;  // 🔄 Loop left
+      updateSlider();
     });
 
     next.addEventListener('click', (e) => {
       e.stopPropagation();
-      if (idx < slides.length - 1) {
-        idx++;
-        updateSlider();
-      }
+      idx = (idx + 1) % slides.length;  // 🔄 Loop right
+      updateSlider();
     });
 
     thumbs.forEach(thumb => {
@@ -77,6 +71,7 @@
     updateSlider();
   });
 }
+
 
 
 window.onload = initCategorySliders;
