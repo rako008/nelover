@@ -38,7 +38,9 @@
     function initCategorySliders() {
   document.querySelectorAll('.gallery-container').forEach(container => {
     let idx = 0;
-    const slides = container.querySelectorAll('.slides img');
+
+    const slidesWrapper = container.querySelector('.slides');
+    const slides = slidesWrapper.querySelectorAll('img');
     const thumbs = container.querySelectorAll('.thumbnails img');
     const prev = container.querySelector('.prev');
     const next = container.querySelector('.next');
@@ -49,15 +51,19 @@
     }
 
     prev.addEventListener('click', (e) => {
-      e.stopPropagation();
-      idx = (idx - 1 + slides.length) % slides.length;  // 🔄 Loop left
-      updateSlider();
+      e.stopPropagation(); // Stop event from bubbling to other sliders
+      if (idx > 0) {
+        idx--;
+        updateSlider();
+      }
     });
 
     next.addEventListener('click', (e) => {
       e.stopPropagation();
-      idx = (idx + 1) % slides.length;  // 🔄 Loop right
-      updateSlider();
+      if (idx < slides.length - 1) {
+        idx++;
+        updateSlider();
+      }
     });
 
     thumbs.forEach(thumb => {
