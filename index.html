@@ -9,7 +9,7 @@
   margin-bottom: 50px; /* or more if needed */
 }
   .slider { max-width: 500px; margin: auto; text-align: center; position: relative; }
-.slides img { display: none; width: 100%; height: auto; border-radius: 8px; transition: opacity 0.5s ease; }
+.slides img { display: none; width: 100%; max-width: 500px;  height: 300px; object-fit: cover; border-radius: 8px; transition: opacity 0.4s ease; }
 .slides img.active { display: block; opacity: 1; }
 .prev, .next {
   position: absolute; top: 50%; transform: translateY(-50%);
@@ -18,7 +18,7 @@
 .prev { left: 10px; } .next { right: 10px; }
 .thumbnails { margin-top: 10px; display: flex; justify-content: center; gap: 5px; }
 .thumbnails img {
-  width: 60px; height: 40px; object-fit: cover; cursor: pointer; opacity: 0.6; border: 2px solid transparent;
+  width: 60px; height: 40px; object-fit: cover; border-radius: 4px; cursor: pointer; opacity: 0.6; border: 2px solid transparent;
   border-radius: 4px;
 }
 .thumbnails img.selected { opacity: 1; border-color: #1abc9c; }
