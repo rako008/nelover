@@ -40,6 +40,14 @@
       });
     }
     window.onload = initCategorySliders;
+    function toggleLanguage() {
+    const current = window.location.pathname;
+    if (current.includes("index-ar.html")) {
+      window.location.href = "index.html";
+    } else {
+      window.location.href = "index-ar.html";
+    }
+  }
   </script>
 </head>
 <body>
