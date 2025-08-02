@@ -5,23 +5,21 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Nelover Events | Event Organizing & Rentals in Saudi Arabia</title>
   <style>
-    .gallery-container {
-  margin-bottom: 50px; /* or more if needed */
-}
-  .slider { max-width: 500px; margin: auto; text-align: center; position: relative; }
-.slides img { display: none; width: 100%; max-width: 500px;  height: 300px; object-fit: cover; border-radius: 8px; transition: opacity 0.4s ease; }
-.slides img.active { display: block; opacity: 1; }
-.prev, .next {
-  position: absolute; top: 50%; transform: translateY(-50%);
-  background: rgba(0,0,0,0.7); color: #fff; padding: 15px; border: none; font-size: 24px; cursor: pointer;
-}
-.prev { left: 10px; } .next { right: 10px; }
-.thumbnails { margin-top: 10px; display: flex; justify-content: center; gap: 5px; }
-.thumbnails img {
-  width: 60px; height: 40px; object-fit: cover; border-radius: 4px; cursor: pointer; opacity: 0.6; border: 2px solid transparent;
-  border-radius: 4px;
-}
-.thumbnails img.selected { opacity: 1; border-color: #1abc9c; }
+    .gallery-container { margin-bottom: 50px; }
+    .slider { max-width: 500px; margin: auto; text-align: center; position: relative; }
+    .slides img { display: none; width: 100%; max-width: 500px; height: 300px; object-fit: cover; border-radius: 8px; }
+    .slides img.active { display: block; }
+    .prev, .next {
+      position: absolute; top: 50%; transform: translateY(-50%);
+      background: rgba(0,0,0,0.7); color: #fff; padding: 15px; border: none; font-size: 24px; cursor: pointer;
+    }
+    .prev { left: 10px; }
+    .next { right: 10px; }
+    .thumbnails { margin-top: 10px; display: flex; justify-content: center; gap: 5px; }
+    .thumbnails img {
+      width: 60px; height: 40px; object-fit: cover; border-radius: 4px; cursor: pointer; opacity: 0.6; border: 2px solid transparent;
+    }
+    .thumbnails img.selected { opacity: 1; border-color: #1abc9c; }
 
     body { font-family: Arial, sans-serif; margin: 0; padding: 0; background: #f8f8f8; color: #333; }
     header, footer { background: #2c3e50; color: white; padding: 20px 40px; display: flex; justify-content: space-between; align-items: center; }
@@ -36,51 +34,43 @@
   </style>
   <script>
     function initCategorySliders() {
-  document.querySelectorAll('.gallery-container').forEach(container => {
-    let idx = 0;
+      document.querySelectorAll('.gallery-container').forEach(container => {
+        const slides = Array.from(container.querySelectorAll('.slides img'));
+        const thumbs = Array.from(container.querySelectorAll('.thumbnails img'));
+        const prev = container.querySelector('.prev');
+        const next = container.querySelector('.next');
+        let idx = 0;
 
-    const slidesWrapper = container.querySelector('.slides');
-    const slides = slidesWrapper.querySelectorAll('img');
-    const thumbs = container.querySelectorAll('.thumbnails img');
-    const prev = container.querySelector('.prev');
-    const next = container.querySelector('.next');
+        function updateSlider() {
+          slides.forEach((slide, i) => slide.classList.toggle('active', i === idx));
+          thumbs.forEach((thumb, i) => thumb.classList.toggle('selected', i === idx));
+        }
 
-    function updateSlider() {
-      slides.forEach((s, i) => s.classList.toggle('active', i === idx));
-      thumbs.forEach((t, i) => t.classList.toggle('selected', i === idx));
-    }
+        prev.addEventListener('click', e => {
+          e.stopPropagation();
+          idx = (idx - 1 + slides.length) % slides.length;
+          updateSlider();
+        });
 
-    prev.addEventListener('click', (e) => {
-      e.stopPropagation(); // Stop event from bubbling to other sliders
-      if (idx > 0) {
-        idx--;
-        updateSlider();
-      }
-    });
+        next.addEventListener('click', e => {
+          e.stopPropagation();
+          idx = (idx + 1) % slides.length;
+          updateSlider();
+        });
 
-    next.addEventListener('click', (e) => {
-      e.stopPropagation();
-      if (idx < slides.length - 1) {
-        idx++;
-        updateSlider();
-      }
-    });
+        thumbs.forEach((thumb, i) => {
+          thumb.addEventListener('click', e => {
+            e.stopPropagation();
+            idx = i;
+            updateSlider();
+          });
+        });
 
-    thumbs.forEach(thumb => {
-      thumb.addEventListener('click', (e) => {
-        e.stopPropagation();
-        idx = parseInt(thumb.dataset.index);
         updateSlider();
       });
-    });
+    }
 
-    updateSlider();
-  });
-}
-
-
-window.onload = initCategorySliders;
-
+    window.onload = initCategorySliders;
 
     function toggleLanguage() {
       window.location.href = window.location.pathname.includes("ar") ? "index.html" : "index-ar.html";
@@ -88,45 +78,46 @@ window.onload = initCategorySliders;
   </script>
 </head>
 <body>
-
-<header>
-  <img src="images/logo.png" alt="Nelover Logo" style="max-width:200px;">
-  <h1>Nelover Event Services</h1>
-  <div>
+  <!-- Header and Navigation -->
+  <header>
+    <img src="images/logo.png" alt="Nelover Logo" style="max-width:200px;">
+    <h1>Nelover Event Services</h1>
     <nav>
       <a href="#about">About Us</a>
       <a href="#services">Our Services</a>
       <a href="#projects">Past Projects</a>
       <a href="#contact">Contact</a>
     </nav>
-  </div>
-  <button class="lang-toggle" onclick="toggleLanguage()">عربي</button>
-</header>
+    <button class="lang-toggle" onclick="toggleLanguage()">عربي</button>
+  </header>
 
-<div class="container">
-  <section id="about" class="section">
-    <h2>About Us</h2>
-    <p>Nelover is a full-service event organizing company operating across Saudi Arabia. We manage large-scale events from concept to execution, and offer a wide range of rental equipment to ensure seamless setup and support for every occasion.</p>
-  </section>
+  <!-- Main Container -->
+  <div class="container">
+    <section id="about" class="section">
+      <h2>About Us</h2>
+      <p>Nelover is a full-service event organizing company operating across Saudi Arabia...</p>
+    </section>
 
-  <section id="services" class="section">
-    <h2>Our Services & Rentals</h2>
-    <ul>
-      <li>Event Organization & Project Management</li>
-      <li>PVC Tents</li>
-      <li>Porta Cabins</li>
-      <li>Portable Toilets</li>
-      <li>Chairs & Tables</li>
-      <li>Booths & Exhibition Structures</li>
-      <li>Tower Lights</li>
-      <li>Barriers & Fencing</li>
-    </ul>
-    <!-- PVC Tents -->
-    <div class="gallery-container">
-      <h3>PVC Tents</h3>
-      <div class="slider" tabindex="-1">
-        <button class="prev">&#10094;</button>
-        <div class="slides">
+    <section id="services" class="section">
+      <h2>Our Services & Rentals</h2>
+      <ul>
+        <li>Event Organization & Project Management</li>
+        <li>PVC Tents</li>
+        <li>Porta Cabins</li>
+        <li>Portable Toilets</li>
+        <li>Chairs & Tables</li>
+        <li>Booths & Exhibition Structures</li>
+        <li>Tower Lights</li>
+        <li>Barriers & Fencing</li>
+      </ul>
+
+      <!-- Repeat this structure for each service slider -->
+      <!-- Example for one slider: -->
+      <div class="gallery-container">
+        <h3>PVC Tents</h3>
+        <div class="slider" tabindex="-1">
+          <button class="prev">&#10094;</button>
+          <div class="slides">
           <img src="images/e0d9262a-8bcd-44ac-a6e8-5828947546c7.jpeg" alt="PVC Tent 1">
           <img src="images/84af50fb-2031-4198-a86b-ccbb6a0969ef.jpeg" alt="PVC Tent 2">
           <img src="images/b35e83e1-e6ef-4931-95b2-6d2618da43e2.jpeg" alt="PVC Tent 3">
@@ -212,31 +203,30 @@ window.onload = initCategorySliders;
           <img data-index="1" src="images/2d455b26-85f7-47d5-ad61-f36a5f205210.jpeg" alt="">
           <img data-index="2" src="images/4ec84064-aa09-4f5c-bf5d-642ca8bf2862.jpeg" alt="">
           <img data-index="3" src="images/a3c99579-c813-47c0-80ab-f72ccb97086b.jpeg" alt="">
+        </div>
       </div>
-    </div>
-  </section>
+    </section>
 
-  <section id="projects" class="section">
-    <h2>Past Projects</h2>
-    <p>We have proudly delivered services for major events including marathons, concerts, festivals, sporting tournaments, and more across cities like Riyadh, Jeddah, Neom, and AlUla.</p>
-    <div class="gallery">
-      <!-- Upload past project images here -->
-      <!-- Example: <img src="images/project1.jpg" alt="Project 1"> -->
-    </div>
-  </section>
+    
 
-  <section id="contact" class="section contact">
-    <h2>Contact Us</h2>
-    <p><strong>Email:</strong> info@nelover-events.com</p>
-    <p><strong>Phone:</strong> +966-5X-XXX-XXXX</p>
-    <p><strong>WhatsApp:</strong> Click <a href="https://wa.me/9665XXXXXXX" target="_blank">here to chat</a></p>
-    <p><strong>Location:</strong> Riyadh, Saudi Arabia</p>
-  </section>
-</div>
+    <section id="projects" class="section">
+      <h2>Past Projects</h2>
+      <div class="gallery">
+        <!-- Your images go here -->
+      </div>
+    </section>
 
-<footer>
-  <p>&copy; 2025 Nelover Event Services. All rights reserved.</p>
-</footer>
+    <section id="contact" class="section contact">
+      <h2>Contact Us</h2>
+      <p><strong>Email:</strong> info@nelover-events.com</p>
+      <p><strong>Phone:</strong> +966-5X-XXX-XXXX</p>
+      <p><strong>WhatsApp:</strong> <a href="https://wa.me/9665XXXXXXX" target="_blank">Click here to chat</a></p>
+      <p><strong>Location:</strong> Riyadh, Saudi Arabia</p>
+    </section>
+  </div>
 
+  <footer>
+    <p>&copy; 2025 Nelover Event Services. All rights reserved.</p>
+  </footer>
 </body>
 </html>
