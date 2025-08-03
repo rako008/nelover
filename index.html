@@ -9,13 +9,14 @@
   margin-bottom: 60px; /* increase this value if needed */
 }
     .nelover-banner img {
-  width: 100%;
-  max-height: 650px; /* Adjust for how short/tall you want */
-  object-fit: cover;
+  width: auto;             /* Keep image's original width */
+  max-width: 100%;         /* Prevent it from overflowing horizontally */
+  height: auto;            /* Scale height proportionally */
   display: block;
-  margin: 40px 0;
+  margin: 30px auto;       /* Center the image with spacing above and below */
   border-radius: 8px;
 }
+
 
     body, html { margin:0; padding:0; font-family:Arial, sans-serif; background:#f8f8f8; color:#333; }
     .container { max-width:1100px; margin:auto; background:#fff; padding:40px; }
