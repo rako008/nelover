@@ -29,30 +29,28 @@
 
     @media (max-width: 768px) {
   header {
-    display: flex;
+    justify-content: space-between;
     flex-direction: row;
-    align-items: flex-start; /* Previously "center", which centers the logo */
+    align-items: center;
     text-align: left;
+    flex-wrap: nowrap;
   }
 
   header img {
     align-self: flex-start;
-    max-width: 140px;
-    margin-bottom: 10px;
+    max-width: 100px;
+    height: auto;
   }
 
   nav {
     display: flex;
     flex-direction: row;
-    flex-wrap: wrap;
-    justify-content: flex-start;
+    flex-wrap: nowrap;
     gap: 10px;
-    margin-left: 0;
-    width: 100%;
+    margin-left: auto;
   }
 
   .lang-toggle {
-    align-self: flex-end;
     margin-top: 10px;
   }
 }
