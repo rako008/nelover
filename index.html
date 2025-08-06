@@ -106,7 +106,24 @@
     .thumbnails img.selected { opacity:1; border-color:#1abc9c; }
   </style>
   <script>
-    
+    const video = document.getElementById("hero-video");
+  
+    function playVideoOnce() {
+      if (video && video.paused) {
+        video.muted = true;
+        video.play().catch(e => console.log("Autoplay failed:", e));
+      }
+      // Only do this once
+      document.removeEventListener('click', playVideoOnce);
+      document.removeEventListener('touchstart', playVideoOnce);
+      document.removeEventListener('scroll', playVideoOnce);
+    }
+  
+    document.addEventListener('click', playVideoOnce);
+    document.addEventListener('touchstart', playVideoOnce);
+    document.addEventListener('scroll', playVideoOnce);
+  </script>
+
 function initCategorySliders(){
       document.querySelectorAll('.gallery-container').forEach(container => {
         const slides = Array.from(container.querySelectorAll('.slides img'));
