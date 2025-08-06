@@ -29,46 +29,36 @@
 
     @media (max-width: 768px) {
   header {
-    justify-content: space-between;
     flex-direction: row;
-    align-items: center;
-    text-align: left;
-    flex-wrap: nowrap;
-  }
-
-  header img {
-    align-self: flex-start;
-    max-width: 100px;
-    height: auto;
+    align-items: flex-start;
+    justify-content: space-between;
+    padding: 10px 20px;
+    gap: 10px;
   }
 
   nav {
     display: flex;
-    flex-direction: row;
-    flex-wrap: nowrap;
+    flex-direction: column;
+    align-items: flex-end;
+    margin: 0;
     gap: 10px;
-    margin-left: auto;
   }
 
   .lang-toggle {
     margin-top: 10px;
+    align-self: flex-end;
   }
-}
 
-
-  header {
-    display: flex;
-    padding: 10px 40px;
-    justify-content: space-between;
-    flex-direction: column;
-    align-items: center;
-    text-align: center;
+  header img {
+    max-width: 100px;
+    height: auto;
   }
 
   .container {
     padding: 20px;
   }
 }
+
 
     body {
   overflow-x: hidden;
