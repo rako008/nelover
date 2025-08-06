@@ -121,6 +121,9 @@
         next.addEventListener('click', e=>{ e.stopPropagation(); idx=(idx+1)%slides.length; update(); });
         thumbs.forEach((t,i)=> t.addEventListener('click', e=>{ e.stopPropagation(); idx=i; update(); }));
         update();
+        // Scroll selected thumbnail into view
+        thumbs[idx].scrollIntoView({ behavior: "smooth", inline: "center", block: "nearest" });
+
       });
     }
     window.onload = initCategorySliders;
