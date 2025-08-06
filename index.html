@@ -5,68 +5,6 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Nelover Events | Event Organizing & Rentals</title>
   <style>
-    /* Lightbox Modal Styling */
-.lightbox {
-  display: none;
-  position: fixed;
-  z-index: 1000;
-  top: 0; left: 0;
-  width: 100vw;
-  height: 100vh;
-  background: rgba(0,0,0,0.8);
-  align-items: center;
-  justify-content: center;
-}
-
-.lightbox-content {
-  position: relative;
-  max-width: 90%;
-  max-height: 90%;
-}
-
-.lightbox-content img {
-  width: 100%;
-  height: auto;
-  max-height: 90vh;
-  border-radius: 10px;
-}
-
-.lightbox-close {
-  position: absolute;
-  top: -10px;
-  right: -10px;
-  font-size: 28px;
-  background: white;
-  color: black;
-  border: none;
-  border-radius: 50%;
-  width: 35px;
-  height: 35px;
-  cursor: pointer;
-  font-weight: bold;
-}
-
-.lightbox-arrow {
-  position: absolute;
-  top: 50%;
-  transform: translateY(-50%);
-  font-size: 40px;
-  color: white;
-  background: rgba(0,0,0,0.5);
-  border: none;
-  padding: 10px 20px;
-  cursor: pointer;
-  user-select: none;
-}
-
-.lightbox-arrow.left {
-  left: -60px;
-}
-
-.lightbox-arrow.right {
-  right: -60px;
-}
-
     .thumbnails img {
   flex: 0 0 auto; /* prevents shrinking */
 }
@@ -168,31 +106,7 @@
     .thumbnails img.selected { opacity:1; border-color:#1abc9c; }
   </style>
   <script>
-let currentLightboxImages = [];
-let currentLightboxIndex = 0;
-
-function openLightbox(images, index) {
-  const lightbox = document.getElementById("lightbox");
-  const img = document.getElementById("lightbox-img");
-  currentLightboxImages = images;
-  currentLightboxIndex = index;
-  img.src = images[index].src;
-  lightbox.style.display = "flex";
-}
-
-function closeLightbox() {
-  document.getElementById("lightbox").style.display = "none";
-}
-
-function changeLightboxImage(direction) {
-  currentLightboxIndex = (currentLightboxIndex + direction + currentLightboxImages.length) % currentLightboxImages.length;
-  document.getElementById("lightbox-img").src = currentLightboxImages[currentLightboxIndex].src;
-}
-
-document.getElementById("lightbox").addEventListener("click", function(e) {
-  if (e.target.id === "lightbox") closeLightbox(); // Close when clicking outside the image
-});
-
+    
 function initCategorySliders() {
   document.querySelectorAll('.gallery-container').forEach(container => {
     const slides = Array.from(container.querySelectorAll('.slides img'));
@@ -393,16 +307,6 @@ function initCategorySliders() {
   <footer>
     <p>&copy; 2025 Nelover Event Services. All rights reserved.</p>
   </footer>
-  
-  <!-- Lightbox Modal -->
-<div class="lightbox" id="lightbox">
-  <div class="lightbox-content">
-    <button class="lightbox-close" onclick="closeLightbox()">×</button>
-    <button class="lightbox-arrow left" onclick="changeLightboxImage(-1)">‹</button>
-    <img id="lightbox-img" src="" alt="Fullscreen Image">
-    <button class="lightbox-arrow right" onclick="changeLightboxImage(1)">›</button>
-  </div>
-</div>
 
 </body>
 </html>
