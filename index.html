@@ -15,11 +15,13 @@
   margin-top: 10px;
   display: flex;
   gap: 5px;
-  overflow-x: auto;
-  scroll-behavior: smooth;
-  padding-bottom: 10px;
-  -webkit-overflow-scrolling: touch; /* iOS smooth scrolling */
+  overflow-x: auto;           /* ENABLE horizontal scrolling */
+  overflow-y: hidden;
+  white-space: nowrap;        /* Prevent line wrapping */
+  scroll-behavior: smooth;    /* Smooth auto scroll */
+  padding: 5px 0;
 }
+
 
     html, body {
   margin: 0;
@@ -59,9 +61,7 @@
     padding: 20px;
   }
 }
-
-
-
+    
     body {
   overflow-x: hidden;
 }
